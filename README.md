@@ -1,6 +1,6 @@
 # sakila_movie_search
 
-- The bird of hermes is my name
+- The bird of Hermes is my name
 - Eat my wings
 - To make me tame 
 
