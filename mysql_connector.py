@@ -36,13 +36,13 @@ def search_by_keyword(keyword, limit=10, offset=0):
         if conn:
             conn.close()
 
-# if __name__ == "__main__":
-#     films = search_by_keyword("ace", limit=10, offset=0)
-#     if films:
-#         for f in films:
-#             print(f"{f['film_id']}: {f['title']} ({f['release_year']})")
-#         else:
-#             print("Фильмы не найдены")
+if __name__ == "__main__":
+    films = search_by_keyword("ace", limit=10, offset=0)
+    if films:
+        for f in films:
+            print(f"{f['film_id']}: {f['title']} ({f['release_year']})")
+        else:
+            print("Фильмы не найдены")
 
 
 
