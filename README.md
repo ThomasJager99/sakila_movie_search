@@ -20,7 +20,7 @@ Servus, Grüß Dich — and welcome.
 ---
 
 ## Project Structure
-
+```
 kino_search/
 ├── assets/                  # optional helpers
 ├── config.py                # (optional central config; can be a placeholder)
@@ -30,7 +30,7 @@ kino_search/
 ├── main.py                  # console menu / flows
 ├── mysql_connector.py       # all MySQL queries
 └── requirements.txt         # dependencies
-
+```
 ---
 
 ## Requirements
@@ -174,8 +174,6 @@ Notes / Roadmap
 —
 
 Servus & viel Spaß beim Suchen 🎞️
-
-
 
 
 
