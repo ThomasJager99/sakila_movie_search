@@ -2,7 +2,7 @@ from mysql_connector import search_by_keyword, search_by_genre_year
 from log_writer import log_search
 from log_stats import top_5_by_frequency, last_5_unique
 from formatter import format_films
-
+import time
 # ----- Function for keyword search flow -----
 def search_keyword_flow():
     keyword = input("Enter keyword to search: ").strip()
@@ -86,6 +86,18 @@ def stats_flow():
 
 # ----- Main menu -----
 def main():
+    # Print ASCII art banner once at start
+    print(r"""
+      __  ___       _             
+     /  |/  /___ __(_)__  ___ ____ 
+    / /|_/ / -_) _/ / _ \/ -_) __/
+    /_/  /_/\__/\__/_//_/\__/_/   
+
+        Servus, Grüß Dich! 🎬
+        Welcome to Kino Search
+        """)
+    time.sleep(3)
+
     while True:
         print("\nMenu:")
         print("1) Search by keyword")
@@ -103,7 +115,17 @@ def main():
             elif choice == "3":
                 stats_flow()
             elif choice == "4":
-                print("Bye.")
+                print(r"""
+                  🎬  Vielen Dank für Ihre Zeit
+                      Grüß Gott und Servus!
+
+                       ✝
+                       │
+                    ───┼───
+                       │
+                       │
+                   """)
+                time.sleep(2)
                 break
             else:
                 print("Choose 1, 2, 3 or 4.")
