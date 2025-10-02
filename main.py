@@ -5,6 +5,10 @@ from formatter import format_films
 import time
 
 #TODO: Create a config file with connections, because i used them all manually.
+#TODO: Create janres flow, so i can ask and see what genres we have in line with years.
+#TODO: Create a quit by "q" from regular menu, if i go in 4 i need to be able to quit back at 1.
+#TODO: Create a function with pagination so user can go back on previous film page  
+
 # ----- Function for keyword search flow -----
 def search_keyword_flow():
     keyword = input("Enter keyword to search: ").strip()
@@ -52,6 +56,7 @@ def search_genre_year_flow():
         if not films:
             if offset == 0:
                 print("No films found.")
+                time.sleep(1.5)
             else:
                 print("No more films.")
             break
@@ -127,14 +132,14 @@ def main():
                        │
                        │
                    """)
-                time.sleep(2)
+                time.sleep(1.5)
                 break
             else:
                 print(r"""
                   (•‿•)  
                 Invalid choice. Please select 1, 2, 3 or 4.
                 """)
-                time.sleep(2)
+                time.sleep(1.5)
         except Exception as e:
             print(f"Error: {e}")
 
