@@ -3,6 +3,8 @@ from log_writer import log_search
 from log_stats import top_5_by_frequency, last_5_unique
 from formatter import format_films
 import time
+
+#TODO: Create a config file with connections, because i used them all manually.
 # ----- Function for keyword search flow -----
 def search_keyword_flow():
     keyword = input("Enter keyword to search: ").strip()
@@ -128,7 +130,11 @@ def main():
                 time.sleep(2)
                 break
             else:
-                print("Choose 1, 2, 3 or 4.")
+                print(r"""
+                  (•‿•)  
+                Invalid choice. Please select 1, 2, 3 or 4.
+                """)
+                time.sleep(2)
         except Exception as e:
             print(f"Error: {e}")
 
