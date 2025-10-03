@@ -8,6 +8,13 @@ import time
 #TODO: Create janres flow, so i can ask and see what genres we have in line with years.
 #TODO: Create a quit by "q" from regular menu, if i go in 4 i need to be able to quit back at 1.
 #TODO: Create a function with pagination so user can go back on previous film page  
+#TODO: Outdraw list.of stats 5 frequency - and create ability to see particular which films was searched by this keyword.
+#TODO: Create an f"raw" - which would rewrite withdraw from stats in nice line, not dict
+#TODO: Create accesability to find genres in range of 1-3 letters and show suggestions to user
+#TODO: I already have 5 sec delay on connection to MySQL - But need to create Try 3 times.
+#TODO: Add Rate feature - to show which rate on each film like NC-17, 18+ etc.
+#TODO:
+
 
 # ----- Function for keyword search flow -----
 def search_keyword_flow():

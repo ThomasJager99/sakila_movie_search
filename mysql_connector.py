@@ -97,37 +97,3 @@ def search_by_genre_year(genre: str, y_from: int, y_to: int, limit=10, offset=0)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
