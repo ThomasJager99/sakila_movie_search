@@ -132,7 +132,8 @@ def stats_flow():
 def main():
     """App entry: animated greeting + main loop."""
     # Animated ASCII greeting (falls back to plain print if TTY/import fails)
-    animate_ascii_greeting(BANNER, char_delay=0.002, line_delay=0.02, fade_first_n=0)
+    animate_ascii_greeting(BANNER, char_delay=0.015, line_delay=0.10, fade_first_n=0)
+    time.sleep(1)
 
     while True:
         print("\nMenu:")

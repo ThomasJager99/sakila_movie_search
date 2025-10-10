@@ -3,29 +3,6 @@ from log_writer import log_search
 from log_stats import top_5_by_frequency, last_5_unique
 from formatter import format_films
 import time
-from greeting import animate_ascii_greeting
-
-BANNER = [
-    r"      __  ___       _             ",
-    r"     /  |/  /___ __(_)__  ___ ____",
-    r"    / /|_/ / -_) _/ / _ \/ -_) __/ ",
-    r"    /_/  /_/\__/\__/_//_/\__/_/    ",
-    "",
-    "        Servus, Grüß Dich! 🎬",
-    "        Welcome to Kino Search",
-]
-
-#TODO: Create a config file with connections, because i used them all manually.
-#TODO: Create janres flow, so i can ask and see what genres we have in line with years.
-#TODO: Create a quit by "q" from regular menu, if i go in 4 i need to be able to quit back at 1.
-#TODO: Create a function with pagination so user can go back on previous film page  
-#TODO: Outdraw list.of stats 5 frequency - and create ability to see particular which films was searched by this keyword.
-#TODO: Create an f"raw" - which would rewrite withdraw from stats in nice line, not dict
-#TODO: Create accesability to find genres in range of 1-3 letters and show suggestions to user
-#TODO: I already have 5 sec delay on connection to MySQL - But need to create Try 3 times.
-#TODO: Add Rate feature - to show which rate on each film like NC-17, 18+ etc.
-#TODO: Create validation for 4 numbers in kino search to avoid "23/89" search
-
 
 # ----- Function for keyword search flow -----
 def search_keyword_flow():
@@ -112,15 +89,15 @@ def stats_flow():
 # ----- Main menu -----
 def main():
     # Print ASCII art banner once at start
-    # print(r"""
-    #   __  ___       _
-    #  /  |/  /___ __(_)__  ___ ____
-    # / /|_/ / -_) _/ / _ \/ -_) __/
-    # /_/  /_/\__/\__/_//_/\__/_/
-    #
-    #     Servus, Grüß Dich! 🎬
-    #     Welcome to Kino Search
-    #     """)
+    print(r"""
+      __  ___       _
+     /  |/  /___ __(_)__  ___ ____
+    / /|_/ / -_) _/ / _ \/ -_) __/
+    /_/  /_/\__/\__/_//_/\__/_/
+
+        Servus, Grüß Dich! 🎬
+        Welcome to Kino Search
+        """)
     time.sleep(3)
 
     while True:

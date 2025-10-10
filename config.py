@@ -1,4 +1,5 @@
 import os
+import pymysql.cursors
 from dotenv import load_dotenv
 
 # Загружаем .env в переменные окружения
@@ -17,7 +18,18 @@ MONGO_DB = os.getenv("MONGO_DB", "logs_db")
 MONGO_COLLECTION = os.getenv("MONGO_COLLECTION", "final_project_logs")
 
 
-
+def _mysql_conn():
+    conn= pymysql.connect(
+        host=MYSQL_HOST,
+        port=MYSQL_PORT,
+        user=MYSQL_USER,
+        password=MYSQL_PASSWORD,
+        database=MYSQL_DB,
+        cursorclass=pymysql.cursors.DictCursor,
+        autocommit=True,
+        connect_timeout=5
+    )
+    return conn
 
 
 
