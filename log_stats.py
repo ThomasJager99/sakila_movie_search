@@ -1,14 +1,11 @@
-
-from pymongo import MongoClient
 from dotenv import load_dotenv
-import os
+from config import get_mongo_connect
 
+#NOTE: One and only connection to MongoDB via MongoClient
+_coll=get_mongo_connect()
+
+#NOTE: Loading environment status
 load_dotenv()
-
-# Single global Mongo connection (client manages its own pool)
-_client = MongoClient(os.getenv("MONGO_URI"))
-_db = _client[os.getenv("MONGO_DB")]
-_coll = _db[os.getenv("MONGO_COLLECTION")]
 
 def top_5_by_frequency():
     """
@@ -46,14 +43,14 @@ def last_5_unique():
     return list(_coll.aggregate(pipeline))
 
 # Optional self-test
-if __name__ == "__main__":
-    print("Top-5 by frequency:")
-    for i, d in enumerate(top_5_by_frequency(), 1):
-        print(f"{i}. {d['_id']} — {d['count']}")
-
-    print("\nLast 5 unique:")
-    for i, d in enumerate(last_5_unique(), 1):
-        print(f"{i}. {d['_id']} — last: {d['last_ts']} — results: {d['results_count']}")
+# if __name__ == "__main__":
+#     print("Top-5 by frequency:")
+#     for i, d in enumerate(top_5_by_frequency(), 1):
+#         print(f"{i}. {d['_id']} — {d['count']}")
+#
+#     print("\nLast 5 unique:")
+#     for i, d in enumerate(last_5_unique(), 1):
+#         print(f"{i}. {d['_id']} — last: {d['last_ts']} — results: {d['results_count']}")
 
 
 

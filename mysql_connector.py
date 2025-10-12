@@ -4,12 +4,6 @@ from dotenv import load_dotenv
 from pymysql.cursors import DictCursor
 from config import _mysql_conn
 
-_conn=_mysql_conn()
-
-#FIXME: Now we achieve connection through the config file and not at manual _conn function, but now
-# i have a problem, connection closes immediately after 1 try so we need adjust pagination to new method.
-#IDEA: Create loop while for stop this closing connection
-
 # load_dotenv()
 #Create connection to MySQL Database and transform output from tuples in dictionaries,
 #and also put connection time in 5 seconds, .
@@ -31,7 +25,7 @@ _conn=_mysql_conn()
 #pull out a list with genres.
 def list_of_genres():
     sql="SELECT category_id, name FROM category ORDER BY name;"
-    with _conn as conn, conn.cursor() as cur:
+    with _mysql_conn() as conn, conn.cursor() as cur:
         cur.execute(sql)
         return list(cur.fetchall())
 
@@ -39,7 +33,7 @@ def list_of_genres():
 #Simple ask from DB max and min. Wrap it integer and display it.
 def years_bounds():
     sql="SELECT MIN(release_year) AS min_year, MAX(release_year) AS max_year FROM film;"
-    with _conn as conn, conn.cursor() as cur:
+    with _mysql_conn() as conn, conn.cursor() as cur:
         cur.execute(sql)
         row = cur.fetchone()
         if row:
@@ -58,7 +52,7 @@ def search_by_keyword(keyword: str, limit=10, offset=0):
         ORDER BY title
         LIMIT %s OFFSET %s;
     """
-    with _conn as conn, conn.cursor() as cur:
+    with _mysql_conn() as conn, conn.cursor() as cur:
         cur.execute(sql, ((f"%{keyword}%"), int(limit), int(offset)))
         return list(cur.fetchall())
 
@@ -76,7 +70,7 @@ def search_by_genre_year(genre: str, y_from: int, y_to: int, limit=10, offset=0)
         ORDER BY f.title
         LIMIT %s OFFSET %s;
     """
-     with _conn as conn, conn.cursor() as cur:
+     with _mysql_conn() as conn, conn.cursor() as cur:
          cur.execute(sql, (genre, int(y_from), int(y_to), int(limit), int(offset)))
          return list(cur.fetchall())
 
