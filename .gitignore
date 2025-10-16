@@ -1,7 +1,36 @@
-.venv/
+# --- Python build artifacts ---
 __pycache__/
-.env
-*.pyc
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+
+# --- IDE / Editor junk ---
 .idea/
+.vscode/
+
+# --- Environment & secrets ---
+.env
+
+# --- Databases / exports ---
+*.db
+*.sqlite
 *.sql
+
+# --- Logs / cache / temp ---
+*.log
+*.tmp
+*.cache
+*.bak
+
+# --- Project-specific ---
 todo.py
+
+# --- OS-specific ---
+.DS_Store
+Thumbs.db
