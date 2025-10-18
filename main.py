@@ -3,13 +3,28 @@ from log_writer import log_search
 from log_stats import top_5_by_frequency, last_5_unique
 from formatter import format_films
 import time
+import json
+from pydantic import ValidationError
+from validation import Keyword_search
 
 # ----- Function for keyword search flow -----
 def search_keyword_flow():
-    keyword = input("Enter keyword to search: ").strip()
+    while True:
+        raws = input("Enter a keyword to search or [q] to quit: ").strip()
+        if raws.lower() == "q":
+            return
+
+        try:
+            v= Keyword_search(keyword=raws)
+            keyword = v.keyword
+            break
+        except ValidationError as e:
+            for err in e.errors():
+                loc=".".join(map(str, err["loc"]))
+                print(f"[invalid] {loc}: {err['msg']}")
+
     offset = 0
     page_size = 10
-
     while True:
         # Call MySQL function
         films = search_by_keyword(keyword, limit=page_size, offset=offset)
