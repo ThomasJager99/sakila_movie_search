@@ -13,7 +13,7 @@ env/
 # --- IDE / Editor junk ---
 .idea/
 .vscode/
-.json
+*.json
 # --- Environment & secrets ---
 .env
 
