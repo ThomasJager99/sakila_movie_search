@@ -34,3 +34,4 @@ todo.py
 # --- OS-specific ---
 .DS_Store
 Thumbs.db
+pydantic_intro.py
