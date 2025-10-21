@@ -59,8 +59,11 @@ class Year_genre_flow(BaseModel):
 
 
 def main():
-    test= Year_genre_flow(name="Action")
-    print(test)
+    try:
+        test= Year_genre_flow(name="Action")
+        print(test)
+    except ValidationError as f:
+        print(f'Wrong type of object {f}')
 
 if __name__ == '__main__':
     main()
