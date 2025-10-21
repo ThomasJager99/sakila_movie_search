@@ -17,10 +17,11 @@ def load_genres_map() -> dict[str, str]:
         if 'name' in item
     }
 
+#NOTE: Tool is working and successfully refreshes the genre list from .json to dict
 def reload_genres():
     """Clearing cash and creating new stuck from latest
     version of genres and years"""
-    load_genres_map.cashe_clear()
+    load_genres_map.caсhe_clear()
 
 #NOTE: This one will show that func is working correctly and inside is dict
 # print(load_genres_map())

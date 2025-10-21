@@ -6,10 +6,12 @@ from pydantic import AliasChoices
 from pydantic import ValidationError
 from pydantic import ConfigDict
 from pydantic import field_validator
+from pydantic import model_validator
 from config import _mysql_conn
 from pymysql import cursors
 import json
 from pydantic import StrictStr
+from genres_repo import load_genres_map
 
 #======First One Validator for Keyword=======
 class Keyword_search(BaseModel):
@@ -43,24 +45,33 @@ class Year_genre_flow(BaseModel):
     )
 
     name: StrictStr
-    # year_from: int = Field(ge=1900)
-    # year_to: int = Field(le=2025)
+    year_from: int = Field(ge=1900, le=2025)
+    year_to: int = Field(ge=1900, le=2025)
 
-
+#NOTE: This one validate only str field, and contain inside connection to cached data from genre.json
+# in more useful format of dict and compare it faster with users input.
     @field_validator("name")
     @classmethod
     def genre_compair(cls, v: str) -> str:
-        with open("genres.json", "r") as f:
-            data = json.load(f)
-            valid_genres=[item['name'] for item in data]
-        if v not in valid_genres:
-            raise ValueError(f'Please enter a valid genre. \n Unknown genre: {v}')
-        return v
+        v_norm = v.strip()
+        genres = load_genres_map()
+        key= v_norm.casefold()
+        if key not in genres:
+            raise ValueError(f'Please enter a valid genre. \nUnknown genre: {v}')
+        return v_norm
+
+#NOTE: This func is currently wirking with self models what we already create
+# And its validate possible logical error with two different year fields.
+    @model_validator(mode='after')
+    def year_compair(self):
+        if self.year_from > self.year_to:
+            raise ValueError(f'Left bound {self.year_from} must be less then Right bound {self.year_to}')
+        return self
 
 
 def main():
     try:
-        test= Year_genre_flow(name="Action")
+        test= Year_genre_flow(name="AcTiOn", year_from=2005, year_to=2010)
         print(test)
     except ValidationError as f:
         print(f'Wrong type of object {f}')
@@ -70,17 +81,10 @@ if __name__ == '__main__':
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# def test_main():
+#     try:
+#         test= Year_genre_flow(name="AcTiOn", year_from=2005, year_to=2010)
+#         print(test)
+#     except ValidationError as f:
+#         print(f'Wrong type of object {f}')
 
