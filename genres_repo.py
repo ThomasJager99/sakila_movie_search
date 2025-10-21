@@ -2,7 +2,8 @@ import json
 from functools import lru_cache
 
 
-
+#NOTE: This func contain inside cash from genre.json file and transform it into
+# more useful dict{action:Action} in cash so we can launch validation faster O(1)
 @lru_cache(maxsize=1)
 def load_genres_map() -> dict[str, str]:
     """Download genre.json and caching the result.
@@ -16,9 +17,13 @@ def load_genres_map() -> dict[str, str]:
         if 'name' in item
     }
 
+def reload_genres():
+    """Clearing cash and creating new stuck from latest
+    version of genres and years"""
+    load_genres_map.cashe_clear()
 
-
-
+#NOTE: This one will show that func is working correctly and inside is dict
+# print(load_genres_map())
 
 
 
