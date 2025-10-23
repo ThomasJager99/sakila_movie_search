@@ -6,8 +6,10 @@ import time
 import json
 from pydantic import ValidationError
 from validation import Keyword_search
+from validation import Year_genre_flow
+from genres_repo import load_genres_map
 
-# ----- Function for keyword search flow -----
+# NOTE: ----- Function for keyword search flow -----
 def search_keyword_flow():
     while True:
         raws = input("Enter a keyword to search or [q] to quit: ").strip()
@@ -52,11 +54,37 @@ def search_keyword_flow():
             break
 
 
-# ----- Function for genre + year flow -----
+# NOTE:----- Function for genre + year flow -----
 def search_genre_year_flow():
     genre = input("Enter genre: ").strip()
     y_from = int(input("Year from: "))
     y_to = int(input("Year to: "))
+
+    while True:
+        raw_genre= input("Enter genre (or q to quit): ").strip()
+        if raw_genre() == "q":
+            return
+
+        raw_yf= input("Enter starting year: ")
+        raw_yt= input("Enter ending year: ")
+
+        try:
+            data= Year_genre_flow(
+                name=raw_genre,
+                year_from=int(raw_yf),
+                year_to=int(raw_yt)
+            )
+            break
+
+        except (ValueError, ValidationError) as e:
+            print("Invalid input.")
+            print(e)
+            print("Try again.")
+
+    genre=data.name
+    y_from=data.year_from
+    y_to=data.year_to
+
     offset = 0
     page_size = 10
 

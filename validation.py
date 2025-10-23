@@ -45,8 +45,8 @@ class Year_genre_flow(BaseModel):
     )
 
     name: StrictStr
-    year_from: int = Field(ge=1900, le=2025)
-    year_to: int = Field(ge=1900, le=2025)
+    year_from: int = Field(ge=1990, le=2025)
+    year_to: int = Field(ge=1990, le=2025)
 
 #NOTE: This one validate only str field, and contain inside connection to cached data from genre.json
 # in more useful format of dict and compare it faster with users input.
@@ -69,15 +69,15 @@ class Year_genre_flow(BaseModel):
         return self
 
 
-def main():
-    try:
-        test= Year_genre_flow(name="AcTiOn", year_from=2005, year_to=2010)
-        print(test)
-    except ValidationError as f:
-        print(f'Wrong type of object {f}')
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     try:
+#         test= Year_genre_flow(name="AcTiOn", year_from=1980, year_to=2010)
+#         print(test)
+#     except ValidationError as f:
+#         print(f'Wrong type of object {f}')
+#
+# if __name__ == '__main__':
+#     main()
 
 
 
