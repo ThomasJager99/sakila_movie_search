@@ -56,13 +56,13 @@ def search_keyword_flow():
 
 # NOTE:----- Function for genre + year flow -----
 def search_genre_year_flow():
-    genre = input("Enter genre: ").strip()
-    y_from = int(input("Year from: "))
-    y_to = int(input("Year to: "))
+    # genre = input("Enter genre: ").strip()
+    # y_from = int(input("Year from: "))
+    # y_to = int(input("Year to: "))
 
     while True:
         raw_genre= input("Enter genre (or q to quit): ").strip()
-        if raw_genre() == "q":
+        if raw_genre == "q":
             return
 
         raw_yf= input("Enter starting year: ")
@@ -76,7 +76,7 @@ def search_genre_year_flow():
             )
             break
 
-        except (ValueError, ValidationError) as e:
+        except (ValidationError, ValueError) as e:
             print("Invalid input.")
             print(e)
             print("Try again.")
